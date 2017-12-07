@@ -1,1 +1,1 @@
-## React - Saga example
+## React Redux-Saga example
