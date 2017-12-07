@@ -20,7 +20,7 @@ const store = createStore(
 
 // then run the saga
 sagaMiddleware.run(sagaDemo)			
-// Render application
+
 render(
   <Provider store={store}>
     <App />
