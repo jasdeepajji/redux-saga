@@ -2,14 +2,13 @@ import React from 'react';
 import {render} from 'react-dom';
 import App from './App';
 import './index.css';
-/*********** Redux ************/
+/*********** Redux-Saga ************/
 import reducer from './redux';
 import { devToolsEnhancer, composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux';
 import sagaDemo from './redux/saga';
-//https://redux-saga.js.org/
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
@@ -21,7 +20,7 @@ const store = createStore(
 
 // then run the saga
 sagaMiddleware.run(sagaDemo)			
-
+// Render application
 render(
   <Provider store={store}>
     <App />
