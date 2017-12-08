@@ -16,7 +16,7 @@ class App extends Component {
 	/************* Submit value *****************/
 	submit(event){
 		event.preventDefault();
-		if(event.target.txt.value != ''){
+		if(event.target.txt.value !== ''){
 			if(this.state.index === null){
 			 this.props.fetch(event.target.txt.value);
 			} else{

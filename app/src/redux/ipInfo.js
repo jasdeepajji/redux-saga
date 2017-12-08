@@ -1,6 +1,4 @@
 
-import _ from 'lodash';
-
 
 //reducer
 const ipInfo = (state = {}, action) => {

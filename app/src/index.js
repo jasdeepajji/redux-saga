@@ -4,7 +4,7 @@ import App from './App';
 import './index.css';
 /*********** Redux-Saga ************/
 import reducer from './redux';
-import { devToolsEnhancer, composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux';
