@@ -1,11 +1,13 @@
 
 //Actions 
-const FETCH = "FETCH";
-const DELETE = "DELETE";
-const ADD_TODO = "ADD_TODO";
-const DELETE_TODO = "DELETE_TODO";
-const API         = "API";
-const API_DATA    = "API_DATA";
+export const FETCH = "FETCH";
+export const DELETE = "DELETE";
+export const ADD_TODO = "ADD_TODO";
+export const DELETE_TODO = "DELETE_TODO";
+export const API         = "API";
+export const API_DATA    = "API_DATA";
+export const EDIT        = "EDIT";
+export const UPDATE      = "UPDATE";
 
 let nextTodoId = 0;
 export const fetch = (data) => {
@@ -15,10 +17,10 @@ export const fetch = (data) => {
   }
 }
 
-export const del = (text) => {
+export const del = (index) => {
   return {
     type: DELETE,
-    text:text
+    index
   }
 }
 
@@ -37,10 +39,10 @@ export const addTodo = (text) => {
 }
 
 
-export const deleteTodo = (text) => {
+export const deleteTodo = (index) => {
   return {
 	  type: DELETE_TODO,
-      text
+    index
   }
 }
 
@@ -48,5 +50,21 @@ export const apiData = (data) => {
   return {
     type: API_DATA,
     data
+  }
+}
+
+export const edit = (text,index) => {
+  return {
+    type: EDIT,
+    text,
+    index
+  }
+}
+
+export const update = (text,index) => {
+  return {
+    type: UPDATE,
+    text,
+    index
   }
 }

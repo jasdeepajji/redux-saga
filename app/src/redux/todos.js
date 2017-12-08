@@ -1,5 +1,5 @@
 
-import _ from 'lodash';
+//import _ from 'lodash';
 
 
 //reducer
@@ -16,10 +16,15 @@ const todos = (state = [], action) => {
           completed: false
         }
       ]
-    case 'DELETE_TODO':
-     let index = _.findIndex(state,{text:action.text})
-	 state.splice(index,1)
-	 return [...state]
+
+    case 'DELETE_TODO': 
+	   state.splice(action.index,1)
+	  return [...state]
+
+    case 'UPDATE':    
+     state[action.index].text = action.text
+    return [...state]
+
     default:
       return state
   }

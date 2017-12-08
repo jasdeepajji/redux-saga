@@ -17,9 +17,9 @@ const store = createStore(
   reducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 )
-
 // then run the saga
-sagaMiddleware.run(sagaDemo)			
+sagaMiddleware.run(sagaDemo)
+			
 // Application render here
 render(
   <Provider store={store}>

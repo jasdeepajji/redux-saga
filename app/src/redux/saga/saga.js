@@ -1,10 +1,11 @@
 
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import {addTodo,deleteTodo,apiData} from '../actions'
+import {API,FETCH,DELETE,EDIT,addTodo,deleteTodo,apiData,update} from '../actions'
 import * as Api from '../../api';
 
+/********************* Api call start *******************/
 
-function* fetchIpInfo({payload,type}) {
+function* fetchIpInfo({payload}) {
    try {
       const data = yield call(Api.getIpInfo,"https://ipinfo.io");
       console.log("data",data);
@@ -18,17 +19,17 @@ function* fetchIpInfo({payload,type}) {
 }
 
 export function* apiCall(){
-  yield takeEvery("API", fetchIpInfo);
+  yield takeLatest(API, fetchIpInfo);
 }
 
 
 
-/********************* Api end *******************/
+/********************* Api call end *******************/
 
 
 
 // worker Saga: will be fired on FETCH  actions
-function* fetchTodo({payload,type}) { console.log("FETCH",payload);
+function* fetchTodo({payload}) { 
    try {
       yield put(addTodo(payload));
    } catch (e) {
@@ -41,18 +42,16 @@ function* fetchTodo({payload,type}) { console.log("FETCH",payload);
   Allows concurrent fetches of user.
 */
 export function* fetchTodoFun() { 
-  yield takeEvery("FETCH", fetchTodo);
+  yield takeLatest(FETCH, fetchTodo);
 }
 
 
 // worker Saga: will be fired on DELETE actions
-function* delTodo({text,type}) { console.log("text",text);
+function* delTodo({index}) { 
    try {
-      //const user = yield call(Api.fetchUser, action.payload.userId);
-      yield put(deleteTodo(text));
+     yield put(deleteTodo(index));
    } catch (e) {
-    console.log(e);
-      //yield put(addTodo(payload));
+    console.log(e);      
    }
 }
 
@@ -61,8 +60,25 @@ function* delTodo({text,type}) { console.log("text",text);
   Allows concurrent fetches of user.
 */
 export function* deleteFun() { 
-  yield takeEvery("DELETE", delTodo);
+  yield takeLatest(DELETE, delTodo);
 }
 
+
+// worker Saga: will be fired on DELETE actions
+function* updateTodo({text,index}) { 
+   try {
+     yield put(update(text,index));
+   } catch (e) {
+    console.log(e);     
+   }
+}
+
+/*
+  Starts fetchUser on each dispatched `EDIT` action.
+  Allows concurrent fetches of user.
+*/
+export function* editFun() { 
+  yield takeLatest(EDIT, updateTodo);
+}
 
 
